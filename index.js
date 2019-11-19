@@ -51,7 +51,7 @@ function SingleColor(props) {
     }
 
     return (
-        <div style={style} className="w-100 d-flex flex-column align-items-center justify-content-center">
+        <div style={ style } className="w-100 d-flex flex-column align-items-center justify-content-center">
             <h1>{ props.hex }</h1>
             <button className="btn btn-dark" onClick={ click }>{ props.text }</button>
         </div>
@@ -62,23 +62,28 @@ class AllColors extends React.Component {
 
     state = {
         colors: [
-            {
+            {   
+                id: 1,
                 hex: '#30011E',
                 isLocked: false,
                 text: 'UNLOCK'
             }, {
+                id: 2,
                 hex: '#D7FCD4',
                 isLocked: false,
                 text: 'UNLOCK'
             }, {
+                id: 3,
                 hex: '#B6CCA1',
                 isLocked: false,
                 text: 'UNLOCK'
             }, {
+                id: 4,
                 hex: '#B68F40',
                 isLocked: false,
                 text: 'UNLOCK'
             }, {
+                id: 5,
                 hex: '#545454',
                 isLocked: false,
                 text: 'UNLOCK'
@@ -90,14 +95,19 @@ class AllColors extends React.Component {
         console.log("click", index);
         // console.log(this.state);
         //setState
-
     }
+
+    // handleLock = (index) => {
+    //     let lockStatus = false
+    //     let lockText = 'UNLOCK'
+    //     if ()
+    // }
 
     render() {
         // collection of color bands
         // map through all colors to return all five colors
         // pass in the click function to the SingleColor component so that it can access the state
-        const Colors = this.state.colors.map((obj, idx) => <SingleColor key={idx} index={idx} hex={obj.hex} isLocked={obj.isLocked} text={obj.text} handleClick={this.test}/>)
+        const Colors = this.state.colors.map((obj) => <SingleColor key={obj.id} index={obj.id} hex={obj.hex} isLocked={obj.isLocked} text={obj.text} handleClick={this.test}/>)
         return (
             <div className="w-100 d-flex" style={{ height: "100vh" }}>
                 {Colors}
