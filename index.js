@@ -35,23 +35,23 @@ class AllColors extends React.Component {
         colors: [
             {   
                 id: 0,
-                hex: '#30011E',
+                hex: '#308bfc',
                 isLocked: false
             }, {
                 id: 1,
-                hex: '#D7FCD4',
+                hex: '#40dfee',
                 isLocked: false
             }, {
                 id: 2,
-                hex: '#B6CC81',
+                hex: '#a5f7e1',
                 isLocked: false
             }, {
                 id: 3,
-                hex: '#B68F40',
+                hex: '#2c57c1',
                 isLocked: false
             }, {
                 id: 4,
-                hex: '#545454',
+                hex: '#272eee',
                 isLocked: false
             }
         ]
