@@ -2,7 +2,7 @@
 // var RandomizeBtn = require('./components/RandomizeBtn')
 
 const RandomizeBtn = (props) => {
-    const randomizeColors = props.randomizeColors()
+    const randomizeColors = () => props.randomizeColors()
     return (
         <div className="text-center bg-dark fixed-top">
             <button className="btn btn-secondary m-1" onClick={ randomizeColors }>RANDOMIZE COLORS</button>  
@@ -11,13 +11,11 @@ const RandomizeBtn = (props) => {
 }
 
 const ColorStrip = (props) => {
-    const style = {
-        backgroundColor: props.hex
-    }
+    const style = { backgroundColor: props.hex }
 
-    let lockStr = 'UNLOCK'
+    let lockStr = '🔓'
     if (props.isLocked) {
-        lockStr = 'LOCK'
+        lockStr = '🔒'
     }
 
     const handleLock = () => props.lockColor(props.id)
@@ -34,23 +32,23 @@ class App extends React.Component {
     state = {
         strip: [{
             id: 0,
-            hex: '#FFFFFF',
+            hex: 'click',
             isLocked: false
         }, {
             id: 1,
-            hex: '#FFFFFF',
+            hex: 'randomize',
             isLocked: false
         }, {
             id: 2,
-            hex: '#FFFFFF',
+            hex: 'to',
             isLocked: false
         }, {
             id: 3,
-            hex: '#FFFFFF',
+            hex: 'get',
             isLocked: false
         }, {
             id: 4,
-            hex: '#FFFFFF',
+            hex: 'started!',
             isLocked: false
         }]
     }
@@ -67,16 +65,17 @@ class App extends React.Component {
 
     randomizeColor = () => {
         let stateCopy = [...this.state.strip]
-        stateCopy.map((x)=>{
-            if (!x.isLocked) {
-            x.hex = this._randomizeColor()
-            console.log(x.hex)
+        stateCopy.map((singleColor)=>{
+            if (!singleColor.isLocked) {
+            singleColor.hex = this._randomizeColor()
             }
+            return singleColor
         })
+        this.setState({strip: stateCopy})
     }
 
     render () {
-    const AllColorStrips = this.state.strip.map((x,idx) => <ColorStrip key={idx} id={x.id} hex={x.hex} isLocked={x.isLocked} lockColor={this.lockColor} />)
+    const AllColorStrips = this.state.strip.map((singleColor,idx) => <ColorStrip key={ idx } id={ singleColor.id } hex={ singleColor.hex } isLocked={ singleColor.isLocked } lockColor={ this.lockColor } />)
     return (
         <div>
             <RandomizeBtn randomizeColors={ this.randomizeColor } />
